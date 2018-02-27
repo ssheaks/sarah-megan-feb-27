@@ -1,5 +1,5 @@
-'use strict';
-/*global api, store, VideoList, $*/
+
+/*global api, store, VideoList $*/
 
 // const API_KEY = 'AIzaSyCClYXh2mFYDkbX8OmiaZi7E2woFr9nfV8';
 

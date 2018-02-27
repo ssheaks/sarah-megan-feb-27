@@ -10,3 +10,19 @@ body {
     font-family: Arial, Helvetica, sans-serif;
 }
 
+ul {
+    list-style: none;
+}
+
+li{
+    border: 10px solid purple;
+}
+
+.id {
+    display: none;
+}
+
+.title {
+    font-weight: bold;
+}
+

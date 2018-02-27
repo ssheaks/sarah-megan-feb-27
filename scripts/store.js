@@ -8,6 +8,7 @@
 
 const store = function() {
   let videos = [];
+  
   const setVideos = function(videos) {
     this.videos = videos;
   };

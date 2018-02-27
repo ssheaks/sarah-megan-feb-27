@@ -13,7 +13,7 @@
 // Call render()
 // Expose a bindEventListeners function, which invokes your only event listener function
 
-const videoList = function(){
+const VideoList = function(){
 
   const decorateResponse = function(response) {
     return response.items.map(item => {
@@ -25,10 +25,13 @@ const videoList = function(){
   };
 
   const generateVideoItemHtml = function(video) {
+    //Note: ID part is there, we just hid it in the CSS because it was ugly
     return `<li>
-    <span>${video.id}</span>
-    <span>${video.title}</span>
-    <img src = '${video.thumbnail}' alt = 'search result 1'>
+    <span class="id">${video.id}</span>
+    <span class="title">${video.title}</span>
+    <div>
+    <img src = '${video.thumbnail}' alt = 'search result 1' class ="thumb">
+    </div>
     </li>`;
   };
 
@@ -42,10 +45,10 @@ const videoList = function(){
       event.preventDefault();
       const searchInput = $('#search-term').val();
       $('#search-term').val('');
-      fetchVideos(searchInput, response =>{
+      api.fetchVideos(searchInput, response =>{
         let decorated = decorateResponse(response);
         console.log(decorated);
-        addVideosToStore(decorated);
+        store.setVideos(decorated);
         render();
       });
     });
