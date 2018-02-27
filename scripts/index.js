@@ -36,13 +36,14 @@ const fetchVideos = function(searchTerm, callback) {
 // you get back the object you want.
 const decorateResponse = function(response) {
   //console.log(response.items);
-  store.videos = response.items.map(item => {
+  //store.videos = 
+  response.items.map(item => {
     return {
       id: item.id.videoId, 
       title: item.snippet.title, 
       thumbnail: item.snippet.thumbnails.default.url};
   });
-  render();
+  // render();
 };
 
 // TASK:
@@ -62,7 +63,9 @@ const generateVideoItemHtml = function(video) {
 // objects and sets the array as the value held in store.items
 // TEST IT!
 const addVideosToStore = function(videos) {
+
   store.videos = videos;
+
 };
 
 // TASK:
@@ -87,7 +90,20 @@ const render = function() {
 //   g) Inside the callback, run the `render` function 
 // TEST IT!
 const handleFormSubmit = function() {
-
+  $('form').submit(event=>{
+    event.preventDefault();
+    const searchInput = $('#search-term').val();
+    $('#search-term').val('');
+    fetchVideos(searchInput, response =>{
+      // response => { const videos = decorateResponse(response); 
+      //   console.log(videos);
+        
+      //   // addVideosToStore(videos); render();}
+      let decorated = decorateResponse(response);
+      addVideosToStore(decorated);
+      render();
+    });
+  });
 };
 
 
@@ -266,9 +282,5 @@ const testResponse = {
 
 
 
-// When DOM is ready:
-// $(function () {
-//   // TASK:
-//   // 1. Run `handleFormSubmit` to bind the event listener to the DOM
-// });$(console.log(generateVideoItemHtml(testResponse)));
-$(fetchVideos('batman', decorateResponse));
+
+$(handleFormSubmit);
