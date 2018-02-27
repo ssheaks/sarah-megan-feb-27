@@ -1,4 +1,5 @@
 'use strict';
+/*global $*/
 
 const API_KEY = 'AIzaSyCClYXh2mFYDkbX8OmiaZi7E2woFr9nfV8';
 
@@ -34,9 +35,9 @@ const fetchVideos = function(searchTerm, callback) {
 // TEST IT! Grab an example API response and send it into the function - make sure
 // you get back the object you want.
 const decorateResponse = function(response) {
-  console.log(response.items.map(item => {
+  response.items.map(item => {
     return [item.id, item.snippet.title, item.snippet.thumbnails.default.url];
-  }));
+  });
 };
 
 // TASK:
@@ -44,7 +45,11 @@ const decorateResponse = function(response) {
 // 2. Using the object, return an HTML string containing all the expected data
 // TEST IT!
 const generateVideoItemHtml = function(video) {
-
+  return `<li>
+  <span>${video.id}</span>
+  <span>${video.title}</span>
+  <img src = '${video.thumbnail}' alt = 'search result 1'>
+  </li>`;
 };
 
 // TASK:
@@ -256,7 +261,8 @@ const testResponse = {
 
 
 // When DOM is ready:
-$(function () {
-  // TASK:
-  // 1. Run `handleFormSubmit` to bind the event listener to the DOM
-});
+// $(function () {
+//   // TASK:
+//   // 1. Run `handleFormSubmit` to bind the event listener to the DOM
+// });
+$(console.log(generateVideoItemHtml(testResponse)));
