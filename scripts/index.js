@@ -37,8 +37,8 @@ const fetchVideos = function(searchTerm, callback) {
 const decorateResponse = function(response) {
   //console.log(response.items);
   //store.videos = 
-  response.items.map(item => {
-    return {
+  return response.items.map(item => {
+   return {
       id: item.id.videoId, 
       title: item.snippet.title, 
       thumbnail: item.snippet.thumbnails.default.url};
@@ -65,8 +65,10 @@ const generateVideoItemHtml = function(video) {
 const addVideosToStore = function(videos) {
 
   store.videos = videos;
+  
 
 };
+
 
 // TASK:
 // 1. Create a `render` function
@@ -95,11 +97,11 @@ const handleFormSubmit = function() {
     const searchInput = $('#search-term').val();
     $('#search-term').val('');
     fetchVideos(searchInput, response =>{
-      // response => { const videos = decorateResponse(response); 
-      //   console.log(videos);
-        
-      //   // addVideosToStore(videos); render();}
+    //   // response => { const videos = decorateResponse(response); 
+    //   //   console.log(videos);
+    //   //   // addVideosToStore(videos); render();}
       let decorated = decorateResponse(response);
+      console.log(decorated);
       addVideosToStore(decorated);
       render();
     });
@@ -283,4 +285,4 @@ const testResponse = {
 
 
 
-$(handleFormSubmit);
+$(handleFormSubmit());
